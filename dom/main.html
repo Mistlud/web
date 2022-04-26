@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dom/main.html</title>
+  <style>
+    body {
+      width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    label {
+      display: inline-block;
+      width: 80px;
+    }
+
+    #but {
+      margin: 10px;
+    }
+
+    table {
+      margin: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="addform">
+    <form name="frm" action="..index.html" method="post" onsubmit="saveFnc(event)">
+      <fieldset>
+        <legend> 폼 </legend>
+        <ul>
+          <li><label for="userId">ID : </label>
+            <input type="text" name="uid" id="userId">
+          </li>
+          <li><label for="userName"> Name : </label>
+            <input type="text" name="uname" id="userName">
+          </li>
+          <li><label for="userScore"> Score : </label>
+            <input type="text" name="uscore" id="userScore">
+          </li>
+          <li><label for="userAge">Age : </label>
+            <input type="text" name="uage" id="userAge">
+          </li>
+          <input id="but" type="submit" value="저장">
+        </ul>
+      </fieldset>
+    </form>
+  </div>
+  <div id='show'>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>아이디</th>
+          <th>이름</th>
+          <th>점수</th>
+          <th>나이</th>
+        </tr>
+      </thead>
+      <tbody id="body">
+
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+
+
+    // console.log(document.forms['frm'].elements['uid'].value);
+
+    function saveFnc(e) {
+      e.preventDefault();
+      let id = document.forms['frm'].elements['uid'].value
+      let name = document.forms['frm'].elements['uname'].value
+      let score = document.forms['frm'].elements['uscore'].value
+      let age = document.forms['frm'].elements['uage'].value
+      if (id == '' || name == '' || score == '' || age == '') {
+        alert('값을 입력하시오');
+        return;
+      }
+      let person = {
+        id: id, name: name, score: score, age: age
+      }
+      document.getElementById('body').appendChild(makeTr(person));
+    }
+    function makeTr(obj) {
+      let tr = document.createElement('tr');
+      for (const field in obj) {
+        let td = document.createElement('td');
+        td.innerHTML = obj[field];
+        tr.appendChild(td);
+      }
+      return tr;
+    }
+    document.addEventListener('DOMContentLoaded',
+      function init() {
+        let data = [
+          { id: 101, name: '홍길동', score: 80, age: 19 },
+          { id: 102, name: '박길동', score: 88, age: 22 },
+          { id: 103, name: '김길동', score: 90, age: 27 }
+        ];
+        data.forEach(element => {
+          document.getElementById('body').appendChild(makeTr(element));
+        });
+      });
+  </script>
+</body>
+
+</html>
