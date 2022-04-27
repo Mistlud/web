@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>domm2/main.html</title>
+  <style>
+    body{
+      width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    fieldset{
+      border: none;
+    }
+    ul{
+      display: inline-block;
+      list-style: none;
+    }
+    li{
+      margin: auto;
+    }
+    label{
+      float: left;
+      width: 100px;
+    }
+    ul input{
+      float: right;
+    }
+    table{
+      margin-top: 30px;
+      display: inline-block;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="addFrm">
+    <form action="" name="myFrm"></form>
+    <fieldset>
+      <ul>
+        <li>
+          <label for="sno">학생번호 : </label>
+          <input type="text" id="sno">
+        </li>
+        <li>
+          <label for="sname">학생이름 : </label>
+          <input type="text" id="sname">
+        </li>
+        <li>
+          <label for="seng">영어점수 : </label>
+          <input type="text" id="seng">
+        </li>
+        <li>
+          <label for="skor">국어점수 : </label>
+          <input type="text" id="skor">
+        </li>
+      </ul>
+    </fieldset>
+    <fieldset>
+      <input type="submit" value="추가">
+      <input type="button" value="변경">
+    </fieldset>
+  </div>
+  <div id="listFrm">
+    <table border="1">
+      <thead>
+        <tr>
+          <th>학생번호</th>
+          <th>학생이름</th>
+          <th>영어</th>
+          <th>국어</th>
+          <th>기능</th>
+        </tr>
+      </thead>
+      <tbody id="list">
+
+      </tbody>
+    </table>
+
+  </div>
+<script src="dom1.js"></script>
+</body>
+
+</html>
