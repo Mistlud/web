@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 0429 </title>
+    <style>
+        #container {
+            margin: 0 auto;
+            width: 900px;
+            background: lightgray;
+            border: thin solid gray;
+        }
+
+        #form1 {
+            width: 600px;
+            height: 250px;
+            float: left;
+            margin-top: 5px;
+            background: rgb(255, 199, 177);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        label {
+            display: inline-block;
+            width: 150px;
+        }
+
+        ul input {
+            width: 250px;
+        }
+
+        li {
+            margin: 20px;
+        }
+
+        #form2 {
+            width: 230px;
+            height: 250px;
+            float: right;
+            text-align: center;
+            margin-top: 5px;
+            background: rgb(255, 199, 177);
+        }
+
+        #form2 input {
+            width: 120px;
+            height: 70px;
+            margin: 25px;
+        }
+
+        table {
+            display: inline-block;
+            clear: both;
+            margin: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <form action="#" method="post">
+            <fieldset id="form1">
+                <ul>
+                    <li><label for="uid">사용자아이디</label>
+                        <input type="text" id="uid" value="101">
+                    </li>
+                    <li><label for="uname">사용자이름</label>
+                        <input type="text" id="uname" value="hong">
+                    </li>
+                    <li><label for="uemail">이메일</label>
+                        <input type="text" id="uemail" value="hong@naver.com">
+                    </li>
+                    <li><label for="uphone">전화번호</label>
+                        <input type="text" id="uphone" value="010-1234-5678">
+                    </li>
+                    <li><label for="udate">생년월일</label>
+                        <input type="date" id="udate" value="1995-02-13">
+                    </li>
+                </ul>
+            </fieldset>
+            <fieldset id="form2">
+                <input type="button" value="등록" id="ins">
+                <input type="button" value="삭제" id="del">
+            </fieldset>
+        </form>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>선택</th>
+                    <th>아이디</th>
+                    <th>이름</th>
+                    <th>이메일</th>
+                    <th>전화번호</th>
+                    <th>생년월일</th>
+                </tr>
+            </thead>
+            <tbody id="body">
+                <!--스크립트 자리-->
+            </tbody>
+        </table>
+    </div>
+</body>
+
+<script>
+    //내용 입력받아 등록하기
+    document.querySelector('#ins').addEventListener('click', add)
+    //목록에서 체크박스 체크되어 있는 내용 삭제하기
+    document.querySelector('#del').addEventListener('click', del)
+
+
+
+    function add() {
+        let uid = document.querySelector('#uid').value;
+        let uname = document.querySelector('#uname').value;
+        let uemail = document.querySelector('#uemail').value;
+        let uphone = document.querySelector('#uphone').value;
+        let udate = document.querySelector('#udate').value;
+
+        let userobj = [uid, uname, uemail, uphone, udate]
+        //console.log();
+
+        document.getElementById('body').appendChild((makeTr(userobj)));
+        
+    }
+
+    function makeTr(user) {
+        let tr = document.createElement('tr');
+        let input = document.createElement('input');
+        input.setAttribute('type', 'checkbox')
+        input.setAttribute('id', 'checkBox')
+        tr.appendChild(input)
+        for (let field in user) {
+            let td = document.createElement('td');
+            td.innerHTML = user[field];
+            tr.appendChild(td);
+        }
+        return tr;
+    }
+    function del() {
+        let allTr = document.querySelectorAll('#body>tr');
+        allTr.forEach(element => {
+            if (element.firstElementChild.checked == true) {
+                element.remove();
+            }
+        });
+    }
+</script>
+
+</html>
